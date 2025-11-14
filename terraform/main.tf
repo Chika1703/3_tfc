@@ -139,7 +139,6 @@ resource "twc_lb_rule" "lamp_rule_https" {
   balancer_port  = 443
   server_proto   = "http"
   server_port    = 80
-  ssl_cert_id    = twc_lb_ssl_cert.lamp_cert.id
 }
 
 # --- Outputs ---
