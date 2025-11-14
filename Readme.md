@@ -75,7 +75,7 @@ aws s3 cp index.html s3://mysuperbacketname2021
 #### Т.к у меня нет доступа не к aws/yandex cloud, я буду использовать timeweb.cloud (модуль по тераформу принимали с провайдером [timeweb.cloud](https://github.com/Chika1703/terraform_hw/blob/main/02.1/Readme.md) ответ преподователя:)
 ![1](https://github.com/Chika1703/1_tfc/blob/main/img/1.jpg)
 
-Интернет --> Load Balancer (185.233.187.132) --> LAMP Servers (192.168.30.10–12) --> выход в интернет через NAT Server (213.171.9.93) --> Object Storage
+Интернет --> Load Balancer (ipv4 (1)) --> LAMP Servers (192.168.30.10–12) --> выход в интернет через NAT Server (ipv4 (2)) --> Object Storage
 
 Запрос идёт на Load Balancer. Балансировщик распределяет трафик между всеми LAMP-серверами, чтобы нагрузка была равномерной.
 
