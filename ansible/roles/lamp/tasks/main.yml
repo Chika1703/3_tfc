@@ -1,0 +1,38 @@
+- name: Настроить DNS
+  lineinfile:
+    path: /etc/systemd/resolved.conf
+    regexp: '^#DNS='
+    line: 'DNS=8.8.8.8 1.1.1.1'
+    state: present
+  become: yes
+
+- name: Добавить default route через NAT
+  command: ip route add default via 192.168.10.254
+  become: yes
+  ignore_errors: yes
+
+- name: Перезапустить systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: restarted
+  become: yes
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Apache2
+  apt:
+    name: apache2
+    state: present
+
+- name: Ensure Apache is running and enabled
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+
+- name: Copy index.html from template
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
